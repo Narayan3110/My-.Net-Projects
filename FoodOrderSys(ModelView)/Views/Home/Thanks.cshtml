@@ -1,0 +1,31 @@
+﻿@model FoodOrderSys_ModelView_.Models.FoodForm
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Thanks</title>
+</head>
+<body>
+    
+    <div>
+        @if (Model.Want != null && Model.Want== true)
+        {
+            <h1>Thanks For the order : @Model.Name </h1>
+            <h1>Your Order of  : @Model.FoodName is on the way</h1>
+            <h1>Quantity is @Model.Quantity</h1>
+            <h1>It will be Delivered Soon </h1>
+        }
+        else
+        {
+            <h1>Sorry to here that @Model.Name</h1>
+            <h1>Your Food will be back to the hotel @Model.OrderFrom</h1>
+        }
+    </div>
+</body>
+</html>

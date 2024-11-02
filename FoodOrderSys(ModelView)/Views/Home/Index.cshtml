@@ -1,0 +1,101 @@
+﻿@using FoodOrderSys_ModelView_.Models
+@model FoodForm
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body  >
+
+    <h1 style="color:indigo">WANA ORDER FOOD : <span style="color: indigo">@ViewBag.Message</span></h1>
+    @{
+        var orders = (IEnumerable<FoodForm>)ViewBag.FoodForm;
+    }
+   
+    <table style="border: dashed">
+        <thead>
+            <tr>
+                <th>UserName</th>
+                <th>Item</th>
+                <th>ItemFrom</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in orders)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.FoodName</td>
+                    <td>@item.OrderFrom</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @*<form method="post">
+            <p>  Name <input type="text" name="Name" /></p>
+            <p>Food<input type="text" name="FoodName" /></p>
+            <p> Order From <input type="text" name="From" /></p>
+            <p> Quantity <input type="number" min="1" required name="Quantity" /></p>
+            <p>
+                Want the Order :
+                <select name="Want">
+                    <option value="True">Yes</option>
+                    <option value="False">No</option>
+                </select>
+            </p>
+
+            <input type="submit" value="ORDER NOW">
+
+        </form>*@
+
+    <h1 style="color:red">"Welcome To Online Food Dilevery"</h1>
+    @using (Html.BeginForm() )
+    {
+        @Html.ValidationSummary();
+        <div>
+
+            <p>Name : @Html.TextBox("Name") <span style="color:red ">@Html.ValidationMessageFor(N => N.Name)</span> </p>
+            <p>FoodName : @Html.TextBox("FoodName") <span style="color:red ">@Html.ValidationMessageFor(F => F.FoodName)</span></p>
+            <p>OrderFrom: @Html.TextBoxFor(or => or.OrderFrom) <span style="color:red ">@Html.ValidationMessageFor(of => of.OrderFrom)</span></p>
+            <p>Quantity :@Html.TextBoxFor(q => q.Quantity, new Dictionary<string, object> { { "type", "number" } }) </p>
+            <p>
+                Conformation :@Html.DropDownListFor(wa => wa.Want, new SelectListItem[]
+{
+new SelectListItem{Text="Yes" , Value=Boolean.TrueString},
+new SelectListItem{Text ="No" ,Value = Boolean.FalseString }
+},"Somthing esle")
+            </p>
+
+
+            <p><input type="submit" value="Submit" /> </p>
+
+
+        </div>
+    }
+
+
+
+    @*//just used a chat gpt code for better look*@
+
+
+
+
+
+    @*@using (Html.BeginForm())
+        {
+                @Html.EditorForModel()
+           <input type="submit" value="Submit" />
+        }*@
+
+
+
+
+</body>
+</html>
